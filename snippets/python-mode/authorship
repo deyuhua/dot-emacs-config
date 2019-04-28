@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: authorship
-# key: authorship
-# --
-
-__author__ = "HUADEYU"
-__maintainer__ = "HUADEYU"
-__email__ = "huadeyu@kingsoft.com"
-__status__ = "Production"

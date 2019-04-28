@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: notebook-toc
-# key: notebook-toc
-# --
-
-#+TITLE: $1
-#+OPTIONS: H:3 toc:t num:nil
-
-* $2
