@@ -17,3 +17,4 @@ anaconda-mode/
 bookmarks
 docsets/
 var/
+.custom.el
