@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: logging
+# key: logging
+# --
+
+logging.basicConfig(level=logging.DEBUG)
+LOG = logging.getLogger(__name__)

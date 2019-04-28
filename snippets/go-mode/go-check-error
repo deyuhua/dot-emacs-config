@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: go-check-error
+# key: go-check-error
+# --
+
+func checkError(err error) {
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %s \n", err)
+		os.Exit(1)
+	}
+}

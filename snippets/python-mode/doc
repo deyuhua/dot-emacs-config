@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: __doc__
+# key: __doc
+# --
+
+"""$0
+"""

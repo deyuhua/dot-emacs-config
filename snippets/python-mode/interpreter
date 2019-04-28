@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: interpreter
+# key: interpreter
+# --
+
+#! /usr/bin/env python
+#
+# -*- coding: utf-8 -*-

@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: go-main
+# key: go
+# --
+
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	$1
+}

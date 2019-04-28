@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: codec
+# key: codec
+# --
+
+# -*- coding: utf-8 -*-

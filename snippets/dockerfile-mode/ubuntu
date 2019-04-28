@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: ubuntu_template
+# key: ubuntu
+# --
+FROM ubuntu16.04
+
+MAINTAINER HUADEYU huadeyu@kingsoft.com
+WORKDIR /mnt
+
+RUN $0
+EXPOSE $1
+
+CMD [$2]
