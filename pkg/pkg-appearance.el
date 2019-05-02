@@ -1,27 +1,30 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	coding theme settings
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(if (display-grayscale-p)
-    ;; (use-package atom-one-dark-theme
-    ;;   :config
-    ;;   (load-theme 'atom-one-dark t))
-    (use-package dracula-theme
-      :config
-      (load-theme 'dracula t))
-    ;; (use-package nova-theme
-    ;;   :config
-    ;;   (load-theme 'nova t))
-    ;; (use-package 'spacemacs-theme
-      ;; :config
-    ;; (load-theme 'spacemacs-dark t))
-    ;; (load-theme 'nord t)
-  (require 'item2-molokai)
+;;; Code:
+(use-package doom-themes)
+(require 'doom-dracula-alt)
+
+(if window-system
+    (progn
+      (custom-set-faces
+       '(flycheck-error ((t (:box (:color "violet") :underline nil  :weight bold :foreground "violet") )))
+       '(flycheck-warning ((t (:box (:color "yellow") :underline nil  :weight bold :foreground "yellow") )))
+       '(flycheck-info ((t (:box (:color "green") :underline nil  :weight bold :foreground "green") )))
+       ))
+  (progn
+    (custom-set-faces
+     '(flycheck-error ((t (:background "violet" :weight bold :foreground "#808080") )))
+     '(flycheck-warning ((t (:background "yellow" :weight bold :foreground "#808080") )))
+     '(flycheck-info ((t (:background "green" :weight bold :foreground "#808080") )))
+     ))
   )
 
 (use-package doom-modeline
-      :ensure t
-      :hook (after-init . doom-modeline-mode))
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
+;; FEATURE
 ;; (set-face-background hl-line-face "#00a8b5")
 
 (provide 'pkg-appearance)

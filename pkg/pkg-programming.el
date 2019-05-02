@@ -11,6 +11,7 @@
     (defalias 'workon 'pyvenv-workon)))
 
 (use-package elpy
+  :ensure t
   :init
   (progn
     (elpy-enable)
@@ -18,9 +19,18 @@
 	  python-shell-interpreter-args "-i --simple-prompt")
     ;; enable elpy jedi backend
     (setq elpy-rpc-backend "jedi")
+    (setq elpy-modules '(elpy-module-sane-defaults
+			 elpy-module-company
+			 elpy-module-eldoc
+			 elpy-module-highlight-indentation
+			 elpy-module-pyvenv
+			 elpy-module-yasnippet))
+    (define-key python-mode-map (kbd "RET")
+      'newline-and-indent)
     ))
 
 (use-package cython-mode :defer t)
+
 (use-package yapfify
   :init
   (progn
@@ -34,15 +44,17 @@
     ))
 
 (use-package company-anaconda
+  :ensure t
   :init
   (progn
     (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
     (add-hook 'python-mode-hook 'anaconda-mode)
-    ))
+    )
+  )
 
-(defun pkg-disable-multi-auto-complete ()
-  (auto-complete-mode -1))
-(add-hook 'python-mode-hook 'pkg-disable-multi-auto-complete)
+;; (defun pkg-disable-multi-auto-complete ()
+;;   (auto-complete-mode -1))
+;; (add-hook 'python-mode-hook 'pkg-disable-multi-auto-complete)
 
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -122,7 +134,7 @@
 (with-eval-after-load 'go-mode
   (require 'go-autocomplete))
 
-(defun my-go-mode-hook ()
+(defun pkg-go-mode-hook ()
 					; Use goimports instead of go-fmt
   (setq gofmt-command "goimports")
 					; Call Gofmt before saving
@@ -135,7 +147,12 @@
   (local-set-key (kbd "M-l") 'godef-jump)
   (local-set-key (kbd "M-h") 'pop-tag-mark)
   )
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+(add-hook 'go-mode-hook 'pkg-go-mode-hook)
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Golang Playgraound for emacs
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package go-playground)
 (global-set-key (kbd "M-<RET>") 'go-playground-exec)
 
 

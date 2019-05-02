@@ -1,7 +1,11 @@
 ;; ************************************************************
 ;; 	Must Load ox-publish package
 ;; ************************************************************
-(require 'ox)
+(use-package org
+  :ensure org-plus-contrib
+  :defer t)
+
+(require 'ox-md)
 (require 'ox-publish)
 
 
@@ -50,9 +54,11 @@
 (defun pkg-org-publish-org-sitemap (title list)
   "Sitemap generation function."
   (concat (format "#+TITLE: %s\n" title)
-	  "#+OPTIONS: toc:nil\n\n"
+	  "#+OPTIONS: toc:nil\n"
+	  "#+KEYWORDS:技术博客,技术思考,机器学习,深度学习,IoT,边缘计算,Kubernets,容器技术\n"
+	  "#+DESCRIPTION:前沿技术博客,记录技术生活点滴,Dont't Panic\n\n"
 	  "* Articals\n"
-	  (replace-regexp-in-string "\* ?" "" (org-list-to-subtree list))
+	  (replace-regexp-in-string "\*" " " (org-list-to-subtree list))
 	  "\n\n"
 	  (pkg-file-contents (expand-file-name "~/.emacs.d/pkg/aboutme.org"))
 	  ))
@@ -63,11 +69,11 @@
          (format "- [[file:%s][ %s]]"
                  entry
                  (org-publish-find-title entry project)))
-        ((eq style 'tree) "")
+        ((eq style 'tree)
          ;; Return only last subdir.
-         ;; (concat "- "
-	 ;; 	 (capitalize (file-name-nondirectory (directory-file-name entry)))
-	 ;; 	 "/"))
+         (concat "+ "
+	 	 (capitalize (file-name-nondirectory (directory-file-name entry)))
+	 	 "/"))
         (t entry)))
 
 ;; ************************************************************
@@ -83,13 +89,49 @@
          :headline-levels 3
          :section-numbers nil
          :with-toc t
-         :html-head "<link rel=\"stylesheet\"
-                       href=\"/style/solarized-dark.css\" type=\"text/css\"/>
-                     <script
-                       src=\"https://code.jquery.com/jquery-3.3.1.min.js\"
-                       integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\"
-                       crossorigin=\"anonymous\"></script>
-                     <link href=\"/images/favicon.ico\" rel=\"icon\">
+	 :html-head-include-scripts nil	 
+         :html-head "
+<meta name=\"baidu-site-verification\" content=\"VsK7KMhTM1\" />
+<link rel=\"stylesheet\" href=\"/style/solarized-dark.css\" type=\"text/css\"/>
+<link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.6.3/css/all.css\" integrity=\"sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/\" crossorigin=\"anonymous\">
+<link href=\"/images/favicon.ico\" rel=\"icon\">
+
+<script
+     src=\"https://code.jquery.com/jquery-3.3.1.min.js\"
+     integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\"
+     crossorigin=\"anonymous\">
+</script>
+
+<script>
+(function(){
+    if (location.hostname !== 'huadeyu.tech') {
+        return;
+    }
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName(\"script\")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  if (location.hostname !== \"huadeyu.tech\") {
+    return;
+  }
+  var hm = document.createElement(\"script\");
+  hm.src = \"https://hm.baidu.com/hm.js?0f9fde052ac9166486f2761c80b2bc93\";
+  var s = document.getElementsByTagName(\"script\")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 "
 	 ;; :html-preamble t
          :recursive t
@@ -138,15 +180,15 @@
      <a href=\"/index.html\">Home</a>
    </div>
    <div id=\"github\">
-     <a href=\"https://github.com/deyuhua\">Github</a>
+     <a href=\"https://github.com/deyuhua\" target=\"_blank\">Github</a>
    </div>
   <div id=\"mail\">
     <a href=\"mailto:deyuhua@gmail.com\">Email</a>
   </div>
 </div>
 
-<div id=\"back-to-top\">
-  <a href=\"#top\">Back2Top</a>
+<div class=\"back-to-top\">
+  <a href=\"#top\"><i class=\"far fa-caret-square-up\"></i></a>
 </div>
 
 <script type=\"text/javascript\">
@@ -159,6 +201,12 @@
             jQuery('.back-to-top').fadeOut(duration);
         }
     });
+
+   jQuery('.back-to-top').click(function() {
+        jQuery('body,html').animate({scrollTop:0},500);
+        return false;
+   });
+
    let timer = true;
    setInterval(function() {
 	if (timer)
@@ -168,19 +216,10 @@
 	timer = !timer 
    }, 300);
 </script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement(\"script\");
-  hm.src = \"https://hm.baidu.com/hm.js?d3d296d75f0ca0737ee4d3fd4d3d4af2\";
-  var s = document.getElementsByTagName(\"script\")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 <script>
   (function() {
-      if (location.pathname === '/') {
+      if (location.pathname === '/' || location.pathname === '/index.html' || location.hostname !== 'huadeyu.tech') {
       	return;
       }
       var main = document.querySelector('#postamble');

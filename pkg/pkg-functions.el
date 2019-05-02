@@ -5,6 +5,13 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
+;; ************************************************************
+;; 	TTS for mac
+;; ************************************************************
+(defun say (string &optional speed)
+  (interactive "MString: ")
+  (start-process "say" nil "/usr/bin/say" string))
+
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; 	"Minifies the buffer contents by removing whitespaces."
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -26,7 +33,7 @@
             "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
             "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
             "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
-            "scheme" "sqlite")))
+            "scheme" "sqlite" "html")))
      (list (ido-completing-read+ "Source code type: " src-code-types))))
   (progn
     (newline-and-indent)
@@ -49,5 +56,10 @@
     (forward-word)))
 
 (global-set-key (kbd "M-@") 'pkg-mark-word)
+
+(defun flymake--severity (type)
+  "Get the severity for diagnostic TYPE."
+  (flymake--lookup-type-property type 'severity
+                                 (warning-numeric-level :error)))
 
 (provide 'pkg-functions)

@@ -8,6 +8,7 @@
 ;; You may delete these explanatory comments.
 ;; (package-initialize)
 
+;;; Code:
 (add-to-list 'load-path "~/.emacs.d/pkg")
 
 (require 'pkg-environment)
@@ -17,3 +18,11 @@
 (require 'pkg-programming)
 (require 'pkg-functions)
 (require 'pkg-publish)
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Start server for emacsclient
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(server-start)
+
+(provide 'init)
+;;; init.el ends here

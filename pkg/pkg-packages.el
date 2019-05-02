@@ -2,6 +2,7 @@
 ;;	Automatically compile Emacs Lisp libraries
 ;;	https://github.com/emacscollective/auto-compile
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;;; Code:
 (use-package auto-compile
   :init (setq load-prefer-newer t)
   :config
@@ -86,6 +87,12 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Git tool for emacs
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; (use-package magit
+;;   :config
+;;   (progn
+;;     (global-set-key (kbd "C-x g") 'magit-status)
+;;     ))
+
 (use-package git-gutter+
   :ensure t
   :config
@@ -117,7 +124,7 @@
   :config
   (progn
     )
-  :bind  (("C-i" . helm-swoop)
+  :bind  (("C-c s" . helm-swoop)
 	  ("C-x C-f" . helm-find-files)
 	  ("C-x b" . helm-buffers-list)
 	  ("M-y" . helm-show-kill-ring)
@@ -206,6 +213,8 @@
             (signal 'quit "user quit!")
           (cdr (assoc result rmap))))
     nil))
+
+
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Dockerfile mode
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -217,22 +226,8 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Fixme-mode
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/pkg/vendors"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/pkg/vendors/"))
 (require 'fixme-mode)
-(defvar my-highlight-words
-  '("FIXME" "TODO" "BUG"))
-;; Ensure that the variable exists.
-(defvar wcheck-language-data nil)
-(push '("FIXME"
-        (program . (lambda (strings)
-                     (let (found)
-                       (dolist (word my-highlight-words found)
-                         (when (member word strings)
-                           (push word found))))))
-        (face . highlight)
-        (read-or-skip-faces
-         (nil)))
-      wcheck-language-data)
 (fixme-mode 1)
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -266,6 +261,50 @@
 ;; ************************************************************
 ;; 	Rainbow mode
 ;; ************************************************************
-(use-package rainbow-mode)
+(use-package rainbow-mode
+  :config
+  (progn
+    (defun pkg-enable-rainbow ()
+      (rainbow-mode t))
+    (add-hook 'prog-mode-hook 'pkg-enable-rainbow)
+))
+
+(use-package rainbow-delimiters
+  :config
+  (progn
+    (defun pkg-enable-rainbow-delimiters ()
+      (rainbow-delimiters-mode t))
+    (add-hook 'prog-mode-hook 'pkg-enable-rainbow-delimiters)))
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Flycheck
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package flycheck
+  :config
+  (progn
+    (use-package flycheck-pycheckers)
+    (use-package flycheck-yamllint)
+    
+    (global-flycheck-mode)
+    (with-eval-after-load 'flycheck
+      (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+    )
+  )
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;;	Fold mode
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package vimish-fold
+  :config
+  (progn
+    (vimish-fold-global-mode 1)
+    ))
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	YAML mode
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("yaml" . yaml-mode)))
 
 (provide 'pkg-packages)

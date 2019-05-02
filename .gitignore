@@ -19,3 +19,4 @@ docsets/
 var/
 .custom.el
 snippets
+transient/
