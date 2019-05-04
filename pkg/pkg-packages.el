@@ -307,4 +307,10 @@
   :config
   (add-to-list 'auto-mode-alist '("yaml" . yaml-mode)))
 
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Dlv Debugger
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(require 'go-dlv)
+
 (provide 'pkg-packages)

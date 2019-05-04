@@ -128,8 +128,10 @@ determine the exact padding."
   ;; --- extra faces ------------------------
   ((elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
 
-   ((line-number &override) :foreground base4)
-   ((line-number-current-line &override) :foreground fg)
+   ;; ((line-number &override) :foreground base4)
+   ;; ((line-number-current-line &override) :foreground fg)
+   ((line-number &override) :foreground base5 :distant-foreground nil)
+   ((line-number-current-line &override) :foreground base7 :distant-foreground nil)
 
    (font-lock-comment-face
     :foreground comments
@@ -169,7 +171,7 @@ determine the exact padding."
    (markdown-code-face :background (doom-lighten base3 0.05))
 
    ;; org-mode
-   (org-level-1 :background base1 :foreground level1 :height 1.2 :weight 'bold)
+   (org-level-1 :background nil :foreground level1 :height 1.2 :weight 'bold)
    (org-level-2 :foreground level2 :weight 'bold)
    (org-level-3 :inherit 'org-level-2 :foreground level3)
    (org-level-4 :inherit 'org-level-2 :foreground level4)
@@ -184,8 +186,8 @@ determine the exact padding."
    (org-agenda-dimmed-todo-face :foreground comments)
    (org-agenda-done :foreground base4)
    (org-agenda-structure :foreground violet)
-   (org-block            :background (doom-darken base1 0.125) :foreground violet)
-   (org-block-begin-line :background (doom-darken base1 0.125) :foreground comments)
+   (org-block            :background nil :foreground violet)
+   (org-block-begin-line :background nil :foreground comments)
    (org-code :foreground yellow)
    (org-column :background base1)
    (org-column-title :background base1 :bold t :underline t)
@@ -210,5 +212,6 @@ determine the exact padding."
   ;; --- extra variables ---------------------
   ;; ()
   )
+
 (provide 'doom-dracula-alt)
 ;;; doom-dracula-alt-theme.el ends here

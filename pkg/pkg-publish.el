@@ -33,6 +33,7 @@
 (defun pkg-org-publish ()
   (interactive)
   (progn
+    (org-reload)
     (org-publish-remove-all-timestamps)
     (org-publish-all t)))
 

@@ -22,7 +22,8 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; 	Start server for emacsclient
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(server-start)
+(if (window-system)
+    (server-start))
 
 (provide 'init)
 ;;; init.el ends here

@@ -37,14 +37,13 @@
 ;; useful mode settings
 (display-time-mode 1)
 (column-number-mode 1)
-(global-hl-line-mode t)
 (show-paren-mode nil)
 (display-battery-mode 1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (global-auto-revert-mode t)
-(global-hl-line-mode 1)
+(global-hl-line-mode nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (toggle-frame-fullscreen)
