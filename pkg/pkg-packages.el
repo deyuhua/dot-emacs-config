@@ -58,7 +58,8 @@
 (use-package linum
   :init
   (progn
-    (global-display-line-numbers-mode nil)
+    (global-linum-mode t)
+    ;; (global-display-line-numbers-mode nil)
     (setq display-line-numbers "%4d \u2502")
     ))
 
