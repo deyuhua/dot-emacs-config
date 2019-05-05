@@ -149,12 +149,12 @@
   )
 (add-hook 'go-mode-hook 'pkg-go-mode-hook)
 
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; 	Golang Playgraound for emacs
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (use-package go-playground)
 (global-set-key (kbd "M-<RET>") 'go-playground-exec)
 
+;; 	Dlv Debugger
+(require 'go-dlv)
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	C/C++ IDE Setup

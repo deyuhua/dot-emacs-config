@@ -59,8 +59,7 @@
   :init
   (progn
     (global-linum-mode t)
-    ;; (global-display-line-numbers-mode nil)
-    (setq display-line-numbers "%4d \u2502")
+    (setq linum-format "%4d  ")
     ))
 
 
@@ -307,11 +306,5 @@
 (use-package yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("yaml" . yaml-mode)))
-
-
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-;; 	Dlv Debugger
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(require 'go-dlv)
 
 (provide 'pkg-packages)
