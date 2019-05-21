@@ -12,58 +12,39 @@
 
 (use-package elpy
   :ensure t
+  :bind (:map python-mode-map
+	      ("M-l" . elpy-goto-definition)
+	      ("M-h" . xref-pop-marker-stack)
+	      ("C-x C-e" . python-shell-send-region)
+	      ("C-x C-r" . run-python))
   :init
   (progn
     (elpy-enable)
     (setq python-shell-interpreter "ipython"
 	  python-shell-interpreter-args "-i --simple-prompt")
+
     ;; enable elpy jedi backend
     (setq elpy-rpc-backend "jedi")
-    (setq elpy-modules '(elpy-module-sane-defaults
-			 elpy-module-company
-			 elpy-module-eldoc
-			 elpy-module-highlight-indentation
-			 elpy-module-pyvenv
-			 elpy-module-yasnippet))
     (define-key python-mode-map (kbd "RET")
       'newline-and-indent)
     ))
 
-(use-package cython-mode :defer t)
+(add-hook 'python-mode-hook '(lambda () (auto-complete-mode nil)))
 
 (use-package yapfify
   :init
   (progn
-    (add-hook 'python-mode-hook 'yapf-mode)
+    ;; (defun pkg-enable-yapfify-buffer ()
+    ;;   (yapfify-buffer))
+    ;; (add-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
+    ;; (remove-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
     ))
-
-(use-package anaconda-mode
-  :init
-  (progn
-    (add-hook 'python-mode-hook 'anaconda-mode)
-    ))
-
-(use-package company-anaconda
-  :ensure t
-  :init
-  (progn
-    (add-to-list 'company-backends '(company-anaconda :with company-yasnippet))
-    (add-hook 'python-mode-hook 'anaconda-mode)
-    )
-  )
-
-;; (defun pkg-disable-multi-auto-complete ()
-;;   (auto-complete-mode -1))
-;; (add-hook 'python-mode-hook 'pkg-disable-multi-auto-complete)
-
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Markdown mode setting
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (use-package markdown-mode
   :ensure t
-  :bind (("C-c p" . livedown-preview)
-	 ("C-c k" . livedown-kill))
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -75,6 +56,9 @@
 ;;	Go IDE Setup
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (use-package go-mode
+  :bind (:map go-mode-map
+	      ("M-l" . godef-jump)
+	      ("M-h" . pop-tag-mark))
   :config
   (progn
     (add-hook 'before-save-hook 'gofmt-before-save)
@@ -109,8 +93,8 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (when window-system (set-exec-path-from-shell-PATH))
-;; (setenv "GOPATH" "/Users/deyuhua/Workspace/SourceCode/golang")
 (defun go-work-on ()
+  "Setup golang work path."
   (interactive)
   (let ((path (read-directory-name "Golang PATH: ")))
     (progn
@@ -126,16 +110,16 @@
 ;;       (message "Try to install go package: " pkg-name)
 ;;       )))
 
-(defun auto-complete-for-go ()
-  (auto-complete-mode 1))
-(add-hook 'go-mode-hook 'auto-complete-for-go)
-
-(use-package go-autocomplete)
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
+;; (defun auto-complete-for-go ()
+;;   (auto-complete-mode 1))
+(use-package go-autocomplete
+  :config
+  (progn
+    (add-hook 'go-mode-hook '(lambda () (auto-complete-mode t)))
+    ))
 
 (defun pkg-go-mode-hook ()
-					; Use goimports instead of go-fmt
+  "Use goimports instead of go-fmt."
   (setq gofmt-command "goimports")
 					; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
@@ -144,14 +128,13 @@
       (set (make-local-variable 'compile-command)
            "go build -v && go test -v && go vet"))
 					; Godef jump key binding
-  (local-set-key (kbd "M-l") 'godef-jump)
-  (local-set-key (kbd "M-h") 'pop-tag-mark)
   )
 (add-hook 'go-mode-hook 'pkg-go-mode-hook)
 
 ;; 	Golang Playgraound for emacs
-(use-package go-playground)
-(global-set-key (kbd "M-<RET>") 'go-playground-exec)
+(use-package go-playground
+  :bind (:map go-mode-map
+	      ("M-<RET>" . go-playground-exec)))
 
 ;; 	Dlv Debugger
 (require 'go-dlv)
@@ -163,7 +146,8 @@
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 
 (use-package cc-mode
-  :bind (("M-h" . helm-gtags-pop-stack)
+  :bind (:map c-mode-map
+	 ("M-h" . helm-gtags-pop-stack)
 	 ("M-l" . helm-gtags-find-tag))
   :config
   (progn
@@ -187,7 +171,6 @@
    gdb-many-windows t
    ;; Non-nil means display source file containing the main routine at startup
    gdb-show-main t))
-
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Scala IDE Setup

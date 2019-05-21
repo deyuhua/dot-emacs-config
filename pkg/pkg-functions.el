@@ -62,4 +62,41 @@
   (flymake--lookup-type-property type 'severity
                                  (warning-numeric-level :error)))
 
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;;	Terminal Notifier For Emacs
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(defvar terminal-notifier-path
+  "/usr/local/bin/terminal-notifier")
+
+(defun pkg-send-notification (msg title)
+  "Send notification, MSG and TITLE."
+  (shell-command (concat terminal-notifier-path
+			 " -title " title
+			 " -message " msg))
+  )
+
+(run-at-time
+ "30 min"
+ 3600
+ '(lambda ()
+    (pkg-send-notification "'注意休息，已经持续工作半小时！'" "'🚀🚀🚀 Pay Attention!!!'")
+    ))
+
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Never Show Message Buffer
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; Removes *messages* from the buffer.
+;; (setq-default message-log-max nil)
+;; (kill-buffer "*Messages*")
+
+;; ;; Removes *Completions* from buffer after you've opened a file.
+;; (add-hook 'minibuffer-exit-hook
+;; 	  '(lambda ()
+;; 	     (let ((buffer "*Completions*"))
+;; 	       (and (get-buffer buffer)
+;; 		    (kill-buffer buffer)))))
+
+
 (provide 'pkg-functions)

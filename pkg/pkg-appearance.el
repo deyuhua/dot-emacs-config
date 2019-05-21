@@ -26,6 +26,8 @@
    '(flycheck-info ((t (:background "green" :weight bold :foreground "#808080") )))
    '(vertical-border ((t (:background nil :foreground "grey"))))
    )
+  ;; (set-face-background 'vertical-border (face-background 'default))
+  ;; (set-face-foreground 'vertical-border "grey")
   )
 
 

@@ -87,11 +87,7 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Git tool for emacs
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-;; (use-package magit
-;;   :config
-;;   (progn
-;;     (global-set-key (kbd "C-x g") 'magit-status)
-;;     ))
+(use-package magit)
 
 (use-package git-gutter+
   :ensure t
@@ -135,7 +131,7 @@
 ;;	Auto complete when coding
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (use-package auto-complete
-  :bind ("M-<tab>" . auto-complete)
+  ;; :bind ("<TAB>" . auto-complete)
   :init
   (progn
     (ac-config-default)
@@ -306,5 +302,31 @@
 (use-package yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("yaml" . yaml-mode)))
+
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Smart tab
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package smart-tab
+  :config
+  (progn
+    (defun pkg-enable-smart-tab ()
+      (smart-tab-mode))
+    (add-hook 'prog-mode-hook 'pkg-enable-smart-tab)
+    ))
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Kubernetes tools
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package kubernetes
+  :ensure t
+  :commands (kubernetes-overview))
+
+
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Plantuml mode
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(require 'plantuml-mode)
+
 
 (provide 'pkg-packages)
