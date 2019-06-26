@@ -37,7 +37,7 @@
      (list (ido-completing-read+ "Source code type: " src-code-types))))
   (progn
     (newline-and-indent)
-    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+    (insert (format "#+NAME: \n#+CALL: \n#+BEGIN_SRC %s :results output drawer\n" src-code-type))
     (newline-and-indent)
     (insert "#+END_SRC\n")
     (previous-line 2)
@@ -76,27 +76,27 @@
 			 " -message " msg))
   )
 
-(run-at-time
- "30 min"
- 3600
- '(lambda ()
-    (pkg-send-notification "'注意休息，已经持续工作半小时！'" "'🚀🚀🚀 Pay Attention!!!'")
-    ))
+;; (run-at-time
+;;  "30 min"
+;;  3600
+;;  '(lambda ()
+;;     (pkg-send-notification "'注意休息，已经持续工作半小时！'" "'🚀🚀🚀 Pay Attention!!!'")
+;;     ))
 
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; 	Never Show Message Buffer
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; Removes *messages* from the buffer.
-;; (setq-default message-log-max nil)
-;; (kill-buffer "*Messages*")
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
 
-;; ;; Removes *Completions* from buffer after you've opened a file.
-;; (add-hook 'minibuffer-exit-hook
-;; 	  '(lambda ()
-;; 	     (let ((buffer "*Completions*"))
-;; 	       (and (get-buffer buffer)
-;; 		    (kill-buffer buffer)))))
+;; Removes *Completions* from buffer after you've opened a file.
+(add-hook 'minibuffer-exit-hook
+	  '(lambda ()
+	     (let ((buffer "*Completions*"))
+	       (and (get-buffer buffer)
+		    (kill-buffer buffer)))))
 
 
 (provide 'pkg-functions)

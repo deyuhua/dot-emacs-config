@@ -21,14 +21,15 @@
 
 (defun pkg-pick-terminal-faces ()
   (custom-set-faces
-   '(flycheck-error ((t (:background "violet" :weight bold :foreground "#808080") )))
-   '(flycheck-warning ((t (:background "yellow" :weight bold :foreground "#808080") )))
-   '(flycheck-info ((t (:background "green" :weight bold :foreground "#808080") )))
-   '(vertical-border ((t (:background nil :foreground "grey"))))
+   ;; '(flycheck-error ((t (:background "violet" :weight bold :foreground "#808080") )))
+   ;; '(flycheck-warning ((t (:background "yellow" :weight bold :foreground "#808080") )))
+   ;; '(flycheck-info ((t (:background "green" :weight bold :foreground "#808080") )))
+   ;; '(vertical-border ((t (:background nil :foreground "grey"))))
    )
-  ;; (set-face-background 'vertical-border (face-background 'default))
-  ;; (set-face-foreground 'vertical-border "grey")
   )
+
+(set-face-background 'vertical-border (face-background 'default))
+(set-face-foreground 'vertical-border "grey")
 
 
 ;; ************************************************************

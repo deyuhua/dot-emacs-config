@@ -34,10 +34,12 @@
 (use-package yapfify
   :init
   (progn
-    ;; (defun pkg-enable-yapfify-buffer ()
-    ;;   (yapfify-buffer))
-    ;; (add-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
-    ;; (remove-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
+    (add-hook 'python-mode-hook 'yapf-mode)
+    
+    (defun pkg-enable-yapfify-buffer ()
+      (yapfify-buffer))
+    (add-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
+    (add-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
     ))
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -162,7 +164,7 @@
 (use-package cmake-mode
   :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
 
-(use-package company-c-headers :defer t)
+(use-package company-c-headers)
 
 (use-package gdb-mi
   :init

@@ -329,4 +329,10 @@
 (require 'plantuml-mode)
 
 
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;; 	Fiplr - Find in Project for Emacs
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(use-package fiplr)
+
+
 (provide 'pkg-packages)

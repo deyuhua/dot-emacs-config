@@ -137,6 +137,7 @@
 ;; Neotree toggle use F8
 (global-set-key (kbd "<f9>") 'agenda-view)
 (global-set-key (kbd "<f10>") 'helm-M-x)
+(global-set-key (kbd "<f12>") 'fiplr-find-file)
 
 (global-set-key (kbd "M-0") 'next-multiframe-window)
 (global-set-key (kbd "M-9") 'previous-multiframe-window)

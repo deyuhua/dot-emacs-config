@@ -114,4 +114,29 @@
 ;; open agenda view every hour
 ;; (run-at-time "0 sec" 3600 'agenda-view)
 
+;; org bable playground
+(require 'ob-C)
+(require 'ob-js)
+(require 'ob-python)
+(require 'ob-shell)
+(require 'ob-java)
+;;(require 'ob-scala)
+(require 'ob-plantuml)
+(require 'ob-R)
+(require 'ob-redis)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)
+   (C . t)
+   (R . t)
+   (js . t)
+   (python . t)
+   (shell . t)
+   (java . t)
+   (redis . t)
+   ;; (scala . t))
+ ))
+
+
 (provide 'pkg-org-mode)
