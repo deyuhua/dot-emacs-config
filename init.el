@@ -9,15 +9,18 @@
 ;; (package-initialize)
 
 ;;; Code:
-(add-to-list 'load-path "~/.emacs.d/pkg")
+(add-to-list 'load-path "~/.emacs.d/core/+conf")
+(add-to-list 'load-path "~/.emacs.d/core/+orgs")
+(add-to-list 'load-path "~/.emacs.d/core/+private")
+(add-to-list 'load-path "~/.emacs.d/core/+tools")
+(add-to-list 'load-path "~/.emacs.d/core/+lang")
 
-(require 'pkg-environment)
-(require 'pkg-packages)
-(require 'pkg-appearance)
-(require 'pkg-org-mode)
-(require 'pkg-programming)
-(require 'pkg-functions)
-(require 'pkg-publish)
+(require 'conf)
+(require 'orgs)
+(require 'lang)
+(require 'private)
+(require 'tools)
+(require 'lang)
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;; 	Start server for emacsclient

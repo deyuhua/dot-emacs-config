@@ -81,7 +81,7 @@
     (setq neo-window-fixed-size nil)
     (setq-default neo-show-hidden-files t)
     (global-set-key [f2] 'neotree-refresh)
-    (global-set-key [f8] 'neotree-toggle)))
+    (global-set-key [f8] 'neotree-dir)))
 
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -222,7 +222,7 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	Fixme-mode
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/pkg/vendors/"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendors/"))
 (require 'fixme-mode)
 (fixme-mode 1)
 
@@ -333,6 +333,5 @@
 ;; 	Fiplr - Find in Project for Emacs
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (use-package fiplr)
-
 
 (provide 'pkg-packages)

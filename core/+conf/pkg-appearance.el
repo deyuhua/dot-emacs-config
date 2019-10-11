@@ -4,7 +4,7 @@
 ;;; Code:
 (use-package doom-themes)
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/pkg/themes"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/themes"))
 (require 'doom-dracula-alt)
 
 
@@ -13,9 +13,9 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (defun pkg-pick-gui-faces ()
   (custom-set-faces
-   '(flycheck-error ((t (:box (:color "violet") :underline nil  :weight bold :foreground "violet") )))
-   '(flycheck-warning ((t (:box (:color "yellow") :underline nil  :weight bold :foreground "yellow") )))
-   '(flycheck-info ((t (:box (:color "green") :underline nil  :weight bold :foreground "green") )))
+   '(flycheck-error ((t (:underline (:color "violet")  :weight bold :foreground "violet") )))
+   '(flycheck-warning ((t (:underline (:color "yellow")  :weight bold :foreground "yellow") )))
+   '(flycheck-info ((t ( (:color "green") :weight bold :foreground "green") )))
    )
   )
 
@@ -62,6 +62,6 @@
 
 
 ;; FEATURE
-;; (set-face-background hl-line-face "#00a8b5")
+(set-face-background hl-line-face nil)
 
 (provide 'pkg-appearance)

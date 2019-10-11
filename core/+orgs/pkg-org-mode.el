@@ -92,6 +92,7 @@
 
 ;; org caputer settings
 (setq org-default-notes-file ep-inbox-org)
+(setq org-startup-with-inline-images t)
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
@@ -108,6 +109,7 @@
 (defun agenda-view()
   (interactive)
   (progn
+    (kill-current-buffer)
     (org-agenda 'a "a")
     (delete-other-windows)))
 
@@ -123,7 +125,7 @@
 ;;(require 'ob-scala)
 (require 'ob-plantuml)
 (require 'ob-R)
-(require 'ob-redis)
+;; (require 'ob-redis)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -134,7 +136,7 @@
    (python . t)
    (shell . t)
    (java . t)
-   (redis . t)
+   ;; (redis . t)
    ;; (scala . t))
  ))
 

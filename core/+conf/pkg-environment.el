@@ -46,7 +46,8 @@
 (global-hl-line-mode nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-(toggle-frame-fullscreen)
+;; (toggle-frame-fullscreen)
+(toggle-frame-maximized)
 
 ;; file edit settings
 (setq tab-width 4
@@ -102,14 +103,13 @@
 (set-face-attribute 'default nil
                     :family "Source Code Pro for Powerline"
 		    :height 140
-                    :weight 'medium
-                    :width 'medium)
+                    :weight 'regular)
 
 (if (display-graphic-p)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset (font-spec :family "Microsoft Yahei"
-					   :size 14)))
+					   :size 13)))
   )
 
 
