@@ -77,10 +77,10 @@
   :config
   (progn
     (setq neo-smart-open t)
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
     (setq neo-window-fixed-size nil)
-    (setq-default neo-show-hidden-files t)
-    (global-set-key [f2] 'neotree-refresh)
+    ;; (setq-default neo-show-hidden-files nil)
+    (global-set-key [f2] 'neotree-toggle)
     (global-set-key [f8] 'neotree-dir)))
 
 
@@ -135,7 +135,7 @@
   :init
   (progn
     (ac-config-default)
-    (global-auto-complete-mode t)
+    ;; (global-auto-complete-mode t)
     (global-unset-key (kbd "TAB"))
     (ac-set-trigger-key "TAB")
     (setq ac-use-menu-map t)
@@ -280,8 +280,8 @@
   (progn
     (use-package flycheck-pycheckers)
     (use-package flycheck-yamllint)
-    
-    (global-flycheck-mode)
+
+    (add-hook 'after-init-hook #'global-flycheck-mode)
     (with-eval-after-load 'flycheck
       (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
     )

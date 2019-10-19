@@ -19,19 +19,9 @@
     (setq elpy-rpc-backend "jedi")
     (define-key python-mode-map (kbd "RET")
       'newline-and-indent)
-    ))
 
-;; (use-package yapfify
-  ;; :config
-  ;; (add-hook 'python-mode-hook 'yapf-mode))
-;; (use-package yapfify
-;;   :init
-;;   (progn
-;;     (add-hook 'python-mode-hook 'yapf-mode)
-    
-;;     (defun pkg-enable-yapfify-buffer ()
-;;       (yapfify-buffer))
-;;     (add-hook 'before-save-hook 'pkg-enable-yapfify-buffer)
-;;     ))
+    (setq flymake-start-on-flymake-mode nil)
+    (setq flymake-start-syntax-check-on-newline nil)
+    ))
 
 (provide 'pkg-python)

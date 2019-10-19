@@ -46,8 +46,8 @@
 (global-hl-line-mode nil)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-;; (toggle-frame-fullscreen)
-(toggle-frame-maximized)
+(toggle-frame-fullscreen)
+;; (toggle-frame-maximized)
 
 ;; file edit settings
 (setq tab-width 4
@@ -96,6 +96,9 @@
 
 	 (message "Wellcome To Mac OS X, Have A Nice Day!!!"))))
 
+(use-package exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;	coding font for english and chinese

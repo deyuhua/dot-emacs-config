@@ -11,7 +11,6 @@
    (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
 		    :major-modes '(python-mode)
 		    :server-id 'pyls))
-  ;; (lsp--set-configuration `(:pyls (:configurationSource ("yapfify"))))
   :commands lsp
   )
 

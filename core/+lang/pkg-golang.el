@@ -7,6 +7,7 @@
 	      ("M-h" . pop-tag-mark))
   :config
   (progn
+    (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
     ))
 
@@ -18,9 +19,8 @@
                               (company-mode)))
     (setq company-go-show-annotation t)
     (setq company-tooltip-limit 20)                      ; bigger popup window
-    (setq company-idle-delay .2)                         ; decrease delay before autocompletion popup shows
-    (setq company-echo-delay 0)                          ; remove annoying blinking
-    ))
+    )
+  )
 
 (use-package go-eldoc
   :config
@@ -38,5 +38,10 @@
 
 ;; Dlv Debugger
 ;; (require 'go-dlv)
+
+;; go get golang.org/x/tools/cmd/...
+;; go get github.com/rogpeppe/godef
+;; go get -u github.com/nsf/gocode
+;; go get golang.org/x/tools/cmd/goimports
 
 (provide 'pkg-golang)
