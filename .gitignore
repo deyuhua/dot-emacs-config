@@ -17,6 +17,6 @@ anaconda-mode/
 bookmarks
 docsets/
 var/
-.custom.el
 snippets
 transient/
+elpy
