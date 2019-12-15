@@ -30,6 +30,7 @@
 	'newline-and-indent)))
   
   (elpy-enable)
+  (pkg-pick-terminal-faces)
   )
 
 (provide 'pkg-python)

@@ -3,12 +3,17 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ;;; Code:
 
+(use-package doom-themes)
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes"))
 (if (not (display-graphic-p))
     (progn
       (add-to-list 'load-path (expand-file-name "~/.emacs.d/themes"))
-      (require 'doom-dracula-alt)
+      ;; (require 'doom-dracula-alt-theme)
+      (load-theme 'dracula)
+      ;; (load-theme 'spacemacs-light)
+      ;; (load-theme 'doom-solarized-dark)
       )
-  (load-theme 'doom-dracula)
+  ;; (load-theme 'dracula)
   )
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -24,16 +29,32 @@
 
 (defun pkg-pick-terminal-faces ()
   (custom-set-faces
-   '(flycheck-error ((t (:background "violet" :weight bold :foreground "white") )))
-   '(flycheck-warning ((t (:background "yellow" :weight bold :foreground "white") )))
-   '(flycheck-info ((t (:background "green" :weight bold :foreground "white") )))
-   
-   '(flymake-error ((t (:underline nil  :weight bold :style italic :foreground nil) )))
-   '(flymake-warning ((t (:underline nil  :weight bold :style italic :foreground nil) )))
-   '(flymake-info ((t ( :underline nil  :weight bold :style italic :foreground nil) )))
-   '(flymake-note ((t ( :underline nil  :weight bold :style italic :foreground nil) )))
+   ;; Flycheck faces
+   '(flycheck-error ((t (:underline nil :background "violet" :weight bold :foreground "white") )))
+   '(flycheck-warning ((t (:underline nil :background "yellow" :weight bold :foreground "black") )))
+   '(flycheck-info ((t (:underline nil :background "green" :weight bold :foreground "black") )))
+
+   ;; Flymake faces
+   '(flymake-error ((t (:underline nil  :weight bold :slant oblique :foreground nil) )))
+   '(flymake-warning ((t (:underline nil  :weight bold :slant oblique :foreground nil) )))
+   '(flymake-info ((t ( :underline nil  :weight bold :slant oblique :foreground nil) )))
+   '(flymake-note ((t ( :underline nil  :weight bold :slant oblique :foreground nil) )))
+
+   ;; other faces
+   '(helm-selection ((t (:background "nil" :foreground "magenta" :background nil))))
+   '(lsp-ui-doc-background ((t (:background "lightblue" :foreground "grey" :background nil))))
+   )
+
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(neotree-width 48)
    )
   )
+
+(pkg-pick-terminal-faces)
 
 ;; ************************************************************
 ;; modify face base on env
@@ -67,5 +88,8 @@
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+
+(if (fboundp 'mac-auto-operator-composition-mode)
+    (mac-auto-operator-composition-mode))
 
 (provide 'pkg-appearance)

@@ -28,7 +28,12 @@
     (add-hook 'go-mode-hook 'go-eldoc-setup)
     ))
 
-(use-package go-guru :defer t)
+(use-package go-guru
+  :defer t
+  :hook (go-mode . go-guru-hl-identifier-mode))
+(use-package go-rename
+  :ensure t)
+
 (use-package flycheck-gometalinter :defer t)
 
 ;; Golang Playgraound for emacs

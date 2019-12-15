@@ -31,11 +31,5 @@
    ;; Non-nil means display source file containing the main routine at startup
    gdb-show-main t))
 
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-;;	Scala IDE Setup
-;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
 
 (provide 'pkg-clang)

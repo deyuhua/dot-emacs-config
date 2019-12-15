@@ -213,5 +213,5 @@ determine the exact padding."
   ;; ()
   )
 
-(provide 'doom-dracula-alt)
+(provide 'doom-dracula-alt-theme)
 ;;; doom-dracula-alt-theme.el ends here

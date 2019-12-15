@@ -104,15 +104,15 @@
 ;;	coding font for english and chinese
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (set-face-attribute 'default nil
-                    :family "Source Code Pro for Powerline"
-		    :height 140
+                    :family "Liga Source Code Pro"
+		    :height 160
                     :weight 'regular)
 
 (if (display-graphic-p)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset (font-spec :family "Microsoft Yahei"
-					   :size 13)))
+					   :size 16)))
   )
 
 
@@ -146,6 +146,5 @@
 (global-set-key (kbd "M-9") 'previous-multiframe-window)
 
 (global-set-key (kbd "C-x C-m") 'helm-M-x)
-
 
 (provide 'pkg-environment)

@@ -37,7 +37,7 @@
      (list (ido-completing-read+ "Source code type: " src-code-types))))
   (progn
     (newline-and-indent)
-    (insert (format "#+NAME: \n#+CALL: \n#+BEGIN_SRC %s :results output drawer\n" src-code-type))
+    (insert (format "\n#+BEGIN_SRC %s\n" src-code-type))
     (newline-and-indent)
     (insert "#+END_SRC\n")
     (previous-line 2)
@@ -98,5 +98,15 @@
 	       (and (get-buffer buffer)
 		    (kill-buffer buffer)))))
 
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;;      Increase and decrease font size
+;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(defun increase-font-size ()
+  (interactive)
+  (progn
+    (set-face-attribute 'default nil
+		       :family "Liga Source Code Pro"
+		       :height 180
+		       :weight 'regular)))
 
 (provide 'pkg-functions)
