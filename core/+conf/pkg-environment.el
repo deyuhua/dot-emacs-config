@@ -105,14 +105,14 @@
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (set-face-attribute 'default nil
                     :family "Liga Source Code Pro"
-		    :height 160
+		    :height 150
                     :weight 'regular)
 
 (if (display-graphic-p)
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset (font-spec :family "Microsoft Yahei"
-					   :size 16)))
+					   :size 14)))
   )
 
 

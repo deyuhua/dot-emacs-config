@@ -1,6 +1,6 @@
-** Self-Intro
+** Intro
 
-Hi~, 我叫华德禹，毕业于重庆大学，现居北京，主要从事平台研发工作。
+Hi~, 我叫华德禹，毕业于重庆大学，现居北京。
 
 #+BEGIN_EXPORT html
 <div style="text-align: left;">
@@ -21,8 +21,8 @@ Hi~, 我叫华德禹，毕业于重庆大学，现居北京，主要从事平台
 现在主要从事人工智能平台的设计与研发，涉及以下内容：
 
 - 数据挖掘、机器学习、深度学习平台。
-- Kubernetes与Docker等虚拟化技术。
-- 分布式系统与数据库技术等。
+- Kubernetes、Istio和容器等技术。
+- 分布式系统、数据库技术和ServerMesh等。
 - 主要使用Python, Golang, C, Rust等语言。
 
 ** Hobby

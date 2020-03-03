@@ -7,5 +7,6 @@
 (require 'pkg-rust)
 (require 'pkg-tools)
 (require 'json)
+(require 'livedown)
 
 (provide 'lang)

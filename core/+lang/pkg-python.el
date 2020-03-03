@@ -4,33 +4,23 @@
 
 (use-package python
   :mode ("\\.py" . python-mode)
-  :ensure t
+  :ensure t)
+
+(use-package pyenv-mode
+  :init
+  (add-to-list 'exec-path "~/.pyenv/shims")
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
   :config
-  (flymake-mode)
-  (use-package elpy
-    :ensure t
-    :bind (:map python-mode-map
-		("M-." . elpy-goto-definition)
-		("M-," . xref-pop-marker-stack)
-		("C-x C-e" . python-shell-send-region)
-		("C-x C-r" . run-python))
-    :init
-    (remove-hook 'elpy-modules 'elpy-module-flymake)
-    (setq flymake-start-on-flymake-mode nil)
-    (setq flymake-start-syntax-check nil)
-    :config
-    (progn
-      (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-      (setq python-shell-interpreter "ipython"
-	    python-shell-interpreter-args "-i --simple-prompt")
-      
-      ;; enable elpy jedi backend
-      (setq elpy-rpc-backend "jedi")
-      (define-key python-mode-map (kbd "RET")
-	'newline-and-indent)))
+  (pyenv-mode))
+
+(use-package yapfify
+  :config
+  (defun format-python()
+    (when (eq major-mode 'python-mode)
+      (yapfify-buffer)))
   
-  (elpy-enable)
-  (pkg-pick-terminal-faces)
+  (add-hook 'python-mode-hook 'yapf-mode)
+  (add-hook 'before-save-hook #'format-python)
   )
 
 (provide 'pkg-python)

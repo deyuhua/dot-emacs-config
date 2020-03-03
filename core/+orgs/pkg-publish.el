@@ -214,7 +214,7 @@ var _hmt = _hmt || [];
    </div>
    </div>
    <div id=\"avstar\">
-     <a href=\"index.html\"><img src=\"../images/v.jpeg\"></a>
+     <a href=\"/index.html\"><img src=\"../images/v.jpeg\"></a>
    </div>
 </div>
 

@@ -4,16 +4,17 @@
 ;;; Code:
 
 (use-package doom-themes)
-(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes"))
+;; (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes"))
 (if (not (display-graphic-p))
     (progn
       (add-to-list 'load-path (expand-file-name "~/.emacs.d/themes"))
       ;; (require 'doom-dracula-alt-theme)
-      (load-theme 'dracula)
-      ;; (load-theme 'spacemacs-light)
+      ;; (load-theme 'dracula)
+      ;; (load-theme 'spacemacs-dark)
       ;; (load-theme 'doom-solarized-dark)
+      (load-theme 'doom-molokai)
       )
-  ;; (load-theme 'dracula)
+  (load-theme 'dracula)
   )
 
 ;; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -50,7 +51,7 @@
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   '(neotree-width 48)
+   '(neotree-width 64)
    )
   )
 
